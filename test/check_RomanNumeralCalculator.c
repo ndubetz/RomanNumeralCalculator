@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <string.h>
 #include <check.h>
 
@@ -5,22 +6,30 @@
 
 START_TEST (adds_I_and_I_to_get_II)
 {
-	char * i      = "I";
-	char * ii     = "II";
-	char * result = RomanNumeralCalculator_add(i, i);
-	ck_assert_str_eq(result, ii);		
+	char * number1      = "I";
+	char * number2      = "I";
+	char * expectedSum  = "II";
+	char * result;
+
+	result = RomanNumeralCalculator_add(number1, number2);
+	ck_assert_str_eq(result, expectedSum);
+
+    free(result);		
 }
 END_TEST
 
+/*
 START_TEST (adds_II_and_I_to_get_III)
 {
-	char * i      = "I";
-	char * ii     = "II";
-	char * iii    = "III";
-	char * result = RomanNumeralCalculator_add(ii, i);
-	ck_assert_str_eq(result, iii);
+	char * I      = "I";
+	char * II     = "II";
+	char * III    = "III";
+    char * result[20];
+	result = RomanNumeralCalculator_add(II, I);
+	ck_assert_str_eq(result, III);
 }
 END_TEST
+*/
 
 Suite * RomanNumeralSuite(void)
 {
@@ -31,7 +40,7 @@ Suite * RomanNumeralSuite(void)
  
 	tc = tcase_create("AllTests");
 	tcase_add_test(tc, adds_I_and_I_to_get_II);	
-	tcase_add_test(tc, adds_II_and_I_to_get_III);
+/*	tcase_add_test(tc, adds_II_and_I_to_get_III);*/
 
 	suite_add_tcase(s, tc);
 	return s;
