@@ -20,12 +20,26 @@ END_TEST
 
 START_TEST (adds_II_and_I_to_get_III)
 {
-	char * I              = "I";
-	char * II             = "II";
+	char * number1        = "I";
+	char * number2        = "II";
 	char * expectedSum    = "III";
     char * result;
 
-	result = RomanNumeralCalculator_add(II, I);
+	result = RomanNumeralCalculator_add(number1, number2);
+	ck_assert_str_eq(result, expectedSum);
+
+    free(result);
+}
+END_TEST
+
+START_TEST (adds_II_and_II_to_get_IV)
+{
+	char * number1        = "II";
+	char * number2        = "II";
+	char * expectedSum    = "IV";
+    char * result;
+
+	result = RomanNumeralCalculator_add(number1, number2);
 	ck_assert_str_eq(result, expectedSum);
 
     free(result);
@@ -42,6 +56,7 @@ Suite * RomanNumeralSuite(void)
 	tc = tcase_create("AllTests");
 	tcase_add_test(tc, adds_I_and_I_to_get_II);	
 	tcase_add_test(tc, adds_II_and_I_to_get_III);
+	tcase_add_test(tc, adds_II_and_II_to_get_IV);
 
 	suite_add_tcase(s, tc);
 	return s;
