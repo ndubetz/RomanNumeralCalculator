@@ -1,5 +1,5 @@
-CFLAGS != pkg-config --cflags check
-LIBS != pkg-config --libs check
+CFLAGS =  `pkg-config --cflags check`
+LIBS = `pkg-config --libs check`
 VPATH=../src
 
 TEST_OBJECTS = check_RomanNumeralCalculator.o
