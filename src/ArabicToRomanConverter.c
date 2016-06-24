@@ -1,9 +1,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
 char * ArabicToRomanConverter_convert(int arabic_number)
 {
     char * roman_numeral = calloc(15, sizeof(char));
+    while(arabic_number > 0)
+    {        
         if(arabic_number >= 1000)
         {
             strcat(roman_numeral, "M");
@@ -69,5 +73,6 @@ char * ArabicToRomanConverter_convert(int arabic_number)
             strcat(roman_numeral, "I");
             arabic_number -= 1;
         }    
-
+    }
+    return roman_numeral;
 }

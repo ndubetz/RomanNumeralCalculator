@@ -27,11 +27,32 @@ START_TEST (convert_subtractive_numerals)
 }
 END_TEST
 
+START_TEST (convert_additive_numerals)
+{
+	ck_assert_str_eq("II", ArabicToRomanConverter_convert(2));		
+    ck_assert_str_eq("VII", ArabicToRomanConverter_convert(7));
+    ck_assert_str_eq("XIII", ArabicToRomanConverter_convert(13));
+    ck_assert_str_eq("XVI", ArabicToRomanConverter_convert(16));
+    ck_assert_str_eq("LII", ArabicToRomanConverter_convert(52));
+    ck_assert_str_eq("LXXXV", ArabicToRomanConverter_convert(85));
+    ck_assert_str_eq("CXXVII", ArabicToRomanConverter_convert(127));
+    ck_assert_str_eq("CCLXI", ArabicToRomanConverter_convert(261));
+    ck_assert_str_eq("DCXX", ArabicToRomanConverter_convert(620));
+    ck_assert_str_eq("MXI", ArabicToRomanConverter_convert(1011));
+    ck_assert_str_eq("MDCCLXXVI", ArabicToRomanConverter_convert(1776));
+    ck_assert_str_eq("MMCCC", ArabicToRomanConverter_convert(2300));
+    ck_assert_str_eq("MMMII", ArabicToRomanConverter_convert(3002));
+    ck_assert_str_eq("MMMDCCCLXXXVIII", ArabicToRomanConverter_convert(3888));
+    
+}
+END_TEST
+
 TCase * ArabicToRomanConverterTests(void)
 {
 	TCase * tc;
 	tc = tcase_create("ArabicToRomanConverterTests");
 	tcase_add_test(tc, convert_single_digits);
 	tcase_add_test(tc, convert_subtractive_numerals);
+	tcase_add_test(tc, convert_additive_numerals);
 	return tc;
 }
