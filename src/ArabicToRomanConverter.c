@@ -1,76 +1,44 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct arabic_to_roman 
+{
+    const int arabic;
+    const char * roman;
+};
+
+const struct arabic_to_roman ARABIC_TO_ROMAN[] =
+{
+    {1000,  "M"},
+    { 900, "CM"},
+    { 500,  "D"},
+    { 400, "CD"},
+    { 100,  "C"},
+    {  90, "XC"},
+    {  50,  "L"},
+    {  40, "XL"},
+    {  10,  "X"},
+    {   9, "IX"},
+    {   5,  "V"},
+    {   4, "IV"},
+    {   1,  "I"}
+};
+
 char * ArabicToRomanConverter_convert(int arabic_number)
 {
-    char * roman_numeral = calloc(15, sizeof(char));
+    char * roman_numeral = calloc(16, sizeof(char));
+    int i = 0;
     while(arabic_number > 0)
-    {        
-        if(arabic_number >= 1000)
+    {
+        if(arabic_number >= ARABIC_TO_ROMAN[i].arabic)
         {
-            strcat(roman_numeral, "M");
-            arabic_number -= 1000;
-        }
-        else if(arabic_number >= 900)
-        {
-            strcat(roman_numeral, "CM");
-            arabic_number -= 900;
-        }
-        else if(arabic_number >= 500)
-        {
-            strcat(roman_numeral, "D");
-            arabic_number -= 500;
-        }
-        else if(arabic_number >= 400)
-        {
-            strcat(roman_numeral, "CD");
-            arabic_number -= 500;
-        }
-        else if(arabic_number >= 100)
-        {
-            strcat(roman_numeral, "C");
-            arabic_number -= 100;
-        }
-        else if(arabic_number >= 90)
-        {
-            strcat(roman_numeral, "XC");
-            arabic_number -= 100;
-        }
-        else if(arabic_number >= 50)
-        {
-            strcat(roman_numeral, "L");
-            arabic_number -= 50;
-        }
-        else if(arabic_number >= 40)
-        {
-            strcat(roman_numeral, "XL");
-            arabic_number -= 40;
-        }   
-        else if(arabic_number >= 10)
-        {
-            strcat(roman_numeral, "X");
-            arabic_number -= 10;
-        }        
-        else if(arabic_number >= 9)
-        {
-            strcat(roman_numeral, "IX");
-            arabic_number -= 9;
-        }
-        else if(arabic_number >= 5)
-        {
-            strcat(roman_numeral, "V");
-            arabic_number -= 5;
-        }
-        else if(arabic_number >= 4)
-        {
-            strcat(roman_numeral, "IV");
-            arabic_number -= 4;
-        }
+            strcat(roman_numeral, ARABIC_TO_ROMAN[i].roman);
+            arabic_number -= ARABIC_TO_ROMAN[i].arabic;
+        }  
         else
         {
-            strcat(roman_numeral, "I");
-            arabic_number -= 1;
-        }    
+            i++;
+        }
     }
     return roman_numeral;
 }
