@@ -12,7 +12,7 @@ void test_addition(char * numeral1, char * numeral2, char * expectedSum)
     free(result);
 }
 
-START_TEST (addition_up_to_10)
+START_TEST (addition_up_to_X)
 {
 	test_addition("I", "I", "II");		
     test_addition("II", "I", "III");
@@ -49,7 +49,7 @@ Suite * RomanNumeralSuite(void)
 	s = suite_create("AllTests");
  
 	tc = tcase_create("AllTests");
-	tcase_add_test(tc, addition_up_to_10);
+	tcase_add_test(tc, addition_up_to_X);
 	tcase_add_test(tc, add_XI_and_V_to_get_XVI);
 	suite_add_tcase(s, tc);
     suite_add_tcase(s, ArabicToRomanConverterTests());
