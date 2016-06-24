@@ -14,7 +14,6 @@ void test_addition(char * numeral1, char * numeral2, char * expectedSum)
 START_TEST (addition_up_to_10)
 {
 	test_addition("I", "I", "II");		
-	test_addition("I", "I", "II");		
     test_addition("II", "I", "III");
 	test_addition("II", "II", "IV");
     test_addition("III", "II", "V");
