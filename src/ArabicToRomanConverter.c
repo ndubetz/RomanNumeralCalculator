@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-
 char * ArabicToRomanConverter_convert(int arabic_number)
 {
     char * roman_numeral = calloc(15, sizeof(char));

@@ -43,7 +43,26 @@ START_TEST (convert_additive_numerals)
     ck_assert_str_eq("MMCCC", ArabicToRomanConverter_convert(2300));
     ck_assert_str_eq("MMMII", ArabicToRomanConverter_convert(3002));
     ck_assert_str_eq("MMMDCCCLXXXVIII", ArabicToRomanConverter_convert(3888));
-    
+}
+END_TEST
+
+START_TEST (convert_mixed_numerals)
+{
+	ck_assert_str_eq("XIV", ArabicToRomanConverter_convert(14));		
+    ck_assert_str_eq("XXXIX", ArabicToRomanConverter_convert(39));		
+    ck_assert_str_eq("XLIX", ArabicToRomanConverter_convert(49));
+    ck_assert_str_eq("LXIX", ArabicToRomanConverter_convert(69));
+    ck_assert_str_eq("XCIV", ArabicToRomanConverter_convert(94));
+    ck_assert_str_eq("CXLIII", ArabicToRomanConverter_convert(143));
+    ck_assert_str_eq("CCXCV", ArabicToRomanConverter_convert(295));
+    ck_assert_str_eq("CDXVII", ArabicToRomanConverter_convert(417));
+    ck_assert_str_eq("DLXXXIV", ArabicToRomanConverter_convert(584));
+    ck_assert_str_eq("DCCCXX", ArabicToRomanConverter_convert(820));
+    ck_assert_str_eq("CMXLII", ArabicToRomanConverter_convert(942));
+    ck_assert_str_eq("MCDXCII", ArabicToRomanConverter_convert(1492));
+    ck_assert_str_eq("MCMXCIX", ArabicToRomanConverter_convert(1999));
+    ck_assert_str_eq("MMCDLII", ArabicToRomanConverter_convert(2452));
+    ck_assert_str_eq("MMMCMXCIX", ArabicToRomanConverter_convert(3999));
 }
 END_TEST
 
