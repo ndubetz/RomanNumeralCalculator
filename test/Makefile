@@ -2,12 +2,14 @@ CFLAGS =  `pkg-config --cflags check`
 LIBS = `pkg-config --libs check`
 VPATH=../src
 
-TEST_OBJECTS = check_RomanNumeralCalculator.o
+OBJECTS = RomanNumeralCalculator.o ArabicToRomanConverter.o
+
+TEST_OBJECTS = check_RomanNumeralCalculator.o check_ArabicToRomanConverter.o
 
 test: test_roman
 	./test_roman
 
-test_roman: RomanNumeralCalculator.o $(TEST_OBJECTS)
+test_roman: $(OBJECTS) $(TEST_OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 clean:

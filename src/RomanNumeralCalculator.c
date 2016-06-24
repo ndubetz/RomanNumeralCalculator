@@ -6,12 +6,20 @@ int roman_to_arabic(char * roman_numeral)
     int length = strlen(roman_numeral);
     int i;
     int arabic_number = 0;
-    for(i = length; i--;){
+    for(i = length; i--;)
+    {
         switch(roman_numeral[i])
         {
             case 'X':
-                arabic_number += 9;
-                i--;
+                if(length - i > 0 && roman_numeral[i - 1] == 'I')
+                {
+                    arabic_number += 9;
+                    i--;
+                }
+                else
+                {
+                    arabic_number += 10;
+                }
                 break;
             case 'V':
                 if(length - i > 0 && roman_numeral[i - 1] == 'I')
