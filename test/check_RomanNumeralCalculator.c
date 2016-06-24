@@ -74,6 +74,34 @@ START_TEST (adds_IV_and_I_to_get_V)
 }
 END_TEST
 
+START_TEST (adds_IV_and_II_to_get_VI)
+{
+	char * number1        = "IV";
+	char * number2        = "II";
+	char * expectedSum    = "VI";
+    char * result;
+
+	result = RomanNumeralCalculator_add(number1, number2);
+	ck_assert_str_eq(result, expectedSum);
+
+    free(result);
+}
+END_TEST
+
+START_TEST (adds_IV_and_IV_to_get_VIII)
+{
+	char * number1        = "IV";
+	char * number2        = "II";
+	char * expectedSum    = "VI";
+    char * result;
+
+	result = RomanNumeralCalculator_add(number1, number2);
+	ck_assert_str_eq(result, expectedSum);
+
+    free(result);
+}
+END_TEST
+
 Suite * RomanNumeralSuite(void)
 {
 	Suite * s;
@@ -87,6 +115,8 @@ Suite * RomanNumeralSuite(void)
 	tcase_add_test(tc, adds_II_and_II_to_get_IV);
 	tcase_add_test(tc, adds_III_and_II_to_get_V);
     tcase_add_test(tc, adds_IV_and_I_to_get_V);
+    tcase_add_test(tc, adds_IV_and_II_to_get_VI);
+    tcase_add_test(tc, adds_IV_and_IV_to_get_VIII);
 
 	suite_add_tcase(s, tc);
 	return s;
