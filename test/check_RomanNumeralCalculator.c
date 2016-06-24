@@ -4,101 +4,52 @@
 
 #include "../src/RomanNumeralCalculator.h"
 
+void test_addition(char * numeral1, char * numeral2, char * expectedSum)
+{
+    char * result = RomanNumeralCalculator_add(numeral1, numeral2);
+    ck_assert_str_eq(result, expectedSum);
+    free(result);
+}
+
 START_TEST (adds_I_and_I_to_get_II)
 {
-	char * number1      = "I";
-	char * number2      = "I";
-	char * expectedSum  = "II";
-	char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);		
+	test_addition("I", "I", "II");		
 }
 END_TEST
 
 START_TEST (adds_II_and_I_to_get_III)
 {
-	char * number1        = "I";
-	char * number2        = "II";
-	char * expectedSum    = "III";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+    test_addition("II", "I", "III");
 }
 END_TEST
 
 START_TEST (adds_II_and_II_to_get_IV)
 {
-	char * number1        = "II";
-	char * number2        = "II";
-	char * expectedSum    = "IV";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+	test_addition("II", "II", "IV");
 }
 END_TEST
 
 START_TEST (adds_III_and_II_to_get_V)
 {
-	char * number1        = "III";
-	char * number2        = "II";
-	char * expectedSum    = "V";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+    test_addition("III", "II", "V");
 }
 END_TEST
 
 START_TEST (adds_IV_and_I_to_get_V)
 {
-	char * number1        = "IV";
-	char * number2        = "I";
-	char * expectedSum    = "V";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+    test_addition("IV", "I", "V");
 }
 END_TEST
 
 START_TEST (adds_IV_and_II_to_get_VI)
 {
-	char * number1        = "IV";
-	char * number2        = "II";
-	char * expectedSum    = "VI";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+	test_addition("IV", "II", "VI");
 }
 END_TEST
 
 START_TEST (adds_IV_and_IV_to_get_VIII)
 {
-	char * number1        = "IV";
-	char * number2        = "II";
-	char * expectedSum    = "VI";
-    char * result;
-
-	result = RomanNumeralCalculator_add(number1, number2);
-	ck_assert_str_eq(result, expectedSum);
-
-    free(result);
+	test_addition("IV", "IV", "VIII");
 }
 END_TEST
 
