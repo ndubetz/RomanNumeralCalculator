@@ -53,6 +53,30 @@ START_TEST (adds_IV_and_IV_to_get_VIII)
 }
 END_TEST
 
+START_TEST (adds_V_and_IV_to_get_IX)
+{
+	test_addition("V", "IV", "IX");
+}
+END_TEST
+
+START_TEST (adds_V_and_V_to_get_X)
+{
+	test_addition("V", "V", "X");
+}
+END_TEST
+
+START_TEST (adds_IX_and_I_to_get_X)
+{
+	test_addition("IX", "I", "X");
+}
+END_TEST
+
+START_TEST (adds_II_and_VIII_to_get_X)
+{
+	test_addition("II", "VIII", "X");
+}
+END_TEST
+
 Suite * RomanNumeralSuite(void)
 {
 	Suite * s;
@@ -68,6 +92,10 @@ Suite * RomanNumeralSuite(void)
     tcase_add_test(tc, adds_IV_and_I_to_get_V);
     tcase_add_test(tc, adds_IV_and_II_to_get_VI);
     tcase_add_test(tc, adds_IV_and_IV_to_get_VIII);
+    tcase_add_test(tc, adds_V_and_IV_to_get_IX);
+    tcase_add_test(tc, adds_V_and_V_to_get_X);
+    tcase_add_test(tc, adds_IX_and_I_to_get_X);
+    tcase_add_test(tc, adds_II_and_VIII_to_get_X);
 
 	suite_add_tcase(s, tc);
 	return s;

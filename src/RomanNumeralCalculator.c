@@ -9,6 +9,10 @@ int roman_to_arabic(char * roman_numeral)
     for(i = length; i--;){
         switch(roman_numeral[i])
         {
+            case 'X':
+                arabic_number += 9;
+                i--;
+                break;
             case 'V':
                 if(length - i > 0 && roman_numeral[i - 1] == 'I')
                 {
@@ -32,10 +36,20 @@ int roman_to_arabic(char * roman_numeral)
 
 char * arabic_to_roman(int number)
 {
-    char * roman_numeral = malloc(20);
+    char * roman_numeral = calloc(16, sizeof(char));
     while(number > 0)
     {
-        if(number >= 5)
+        if(number >= 10)
+        {
+            strcat(roman_numeral, "X");
+            number -= 10;
+        }        
+        else if(number >= 9)
+        {
+            strcat(roman_numeral, "IX");
+            number -= 9;
+        }
+        else if(number >= 5)
         {
             strcat(roman_numeral, "V");
             number -= 5;
