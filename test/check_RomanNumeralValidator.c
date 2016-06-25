@@ -35,6 +35,16 @@ START_TEST (invalid_digits)
 }
 END_TEST
 
+START_TEST (no_fives_digit_appears_more_than_once)
+{
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("IV"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MDLV"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("VV"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("DD"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("LL"),  false);
+}
+END_TEST
+
 TCase * RomanNumeralValidatorTests(void)
 {
 	TCase * tc;
@@ -42,6 +52,7 @@ TCase * RomanNumeralValidatorTests(void)
 	tcase_add_test(tc, can_convert_to_roman_numeral);
 	tcase_add_test(tc, valid_digits);
 	tcase_add_test(tc, invalid_digits);
+	tcase_add_test(tc, no_fives_digit_appears_more_than_once);
 	return tc;
 }
 
