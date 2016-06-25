@@ -13,6 +13,13 @@ void test_addition(char * numeral1, char * numeral2, char * expectedSum)
     free(result);
 }
 
+void test_subtraction(char * numeral1, char * numeral2, char * expectedSum)
+{
+    char * result = RomanNumeralCalculator_subtract(numeral1, numeral2);
+    ck_assert_str_eq(result, expectedSum);
+    free(result);
+}
+
 START_TEST (addition_returns_sum)
 {
 	test_addition("CCXII", "CXXI", "CCCXXXIII");		
@@ -29,10 +36,21 @@ START_TEST (addition_returns_sum)
 }
 END_TEST
 
-/*
-    TODO 
-    add subtraction cases
-*/
+START_TEST (subtraction_returns_difference)
+{
+	test_subtraction("MMMCMXCIX", "MMMDCLXXI", "CCCXXVIII");		
+    test_subtraction("MMMCDLXXVI", "MMMCCXLII", "CCXXXIV");
+	test_subtraction("MMMCCCXXXIII", "MMCMXCIX", "CCCXXXIV");
+    test_subtraction("MMMCXI", "MMDCLXXVIII", "CDXXXIII");
+    test_subtraction("MMCMLXIX", "MMCDLV", "DXIV");
+	test_subtraction("MMDCLIV", "MMCXLIV", "DX");
+	test_subtraction("MMDXX", "MCMXV", "DCV");
+	test_subtraction("MMCCCIX", "MDCXLII", "DCLXVII");
+	test_subtraction("MMCXCVI", "MCDXXXIII", "DCCLXIII");
+	test_subtraction("MCMXCIX", "MXCV", "CMIV");
+	test_subtraction("MDCCCVIII", "DCCIX", "MXCIX");
+}
+END_TEST
 
 
 Suite * RomanNumeralSuite(void)
@@ -44,6 +62,7 @@ Suite * RomanNumeralSuite(void)
  
 	tc = tcase_create("RomanNumeralCalculatorTests");
 	tcase_add_test(tc, addition_returns_sum);
+	tcase_add_test(tc, subtraction_returns_difference);
 	suite_add_tcase(s, tc);
     suite_add_tcase(s, ConverterTests());
 	suite_add_tcase(s, RomanNumeralValidatorTests());
