@@ -10,32 +10,34 @@
 
 const char * VALID_NUMERALS = "IVXLCDM";
 
-bool validate_order(char numeral, char previous_numeral)
+char * get_index(char numeral)
 {
-	char * numIndex = strchr(VALID_NUMERALS, numeral);	
-	char * prevIndex = strchr(VALID_NUMERALS, previous_numeral);
-	return prevIndex - numIndex >= 0;
+	return strchr(VALID_NUMERALS, numeral);
 }
 
-bool has_two_fives_digits(char numeral, char previous_numeral)
+bool validate_order(char * num_index, char * prev_index)
 {
-	bool two_Vs = numeral == previous_numeral && previous_numeral == 'V';
-	bool two_Ls = numeral == previous_numeral && previous_numeral == 'L'; 
-	bool two_Ds = numeral == previous_numeral && previous_numeral == 'D';
+	return prev_index - num_index >= 0;
+}
+
+bool has_two_fives_digits(char * num_index, char * prev_index)
+{
+	bool two_Vs = num_index == prev_index && prev_index == get_index('V');
+	bool two_Ls = num_index == prev_index && prev_index == get_index('L');
+	bool two_Ds = num_index == prev_index && prev_index == get_index('D');
 	return two_Vs || two_Ls || two_Ds;
 }
 
-bool validate_numeral(char numeral)
+bool validate_numeral(char * num_index)
 {
-	int i;
-	for(i = 0; i < VALID_NUMERALS_LENGTH; i++)
-	{
-		if(numeral == VALID_NUMERALS[i])
-		{
-			return true;
-		}
-	}
-	return false;
+	return num_index >= get_index('I') && num_index <= get_index('M');
+}
+
+bool validate(char * num_index, char * prev_index)
+{
+	return validate_numeral(num_index)
+		&& validate_order(num_index, prev_index)
+		&& !has_two_fives_digits(num_index, prev_index);
 }
 
 bool RomanNumeralValidator_is_valid(char * roman_numeral)
@@ -44,16 +46,9 @@ bool RomanNumeralValidator_is_valid(char * roman_numeral)
 	char previous_numeral = 0;
 	for(j = 0; j < strlen(roman_numeral); j++)
 	{
-		if(!validate_numeral(roman_numeral[j]))
-		{
-			return false;
-		}
-		
-		if(has_two_fives_digits(roman_numeral[j], previous_numeral))
-		{
-			return false;
-		}
-		if(previous_numeral && !validate_order(roman_numeral[j], previous_numeral))
+		char * num_index = get_index(roman_numeral[j]);	
+		char * prev_index = get_index(previous_numeral);
+		if(!validate(num_index, prev_index))
 		{
 			return false;
 		}
