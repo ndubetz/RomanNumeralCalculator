@@ -1,4 +1,0 @@
-
-
-TCase * RomanToArabicConverterTests(void);
-

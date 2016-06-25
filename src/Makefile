@@ -1,10 +1,12 @@
 
-OBJECTS = ArabicToRomanConverter.o RomanToArabicConverter.o RomanNumeralCalculator.o  
+OBJECTS = Converter.o RomanNumeralCalculator.o  
 
 .PHONY: all
 
 all: $(OBJECTS)
 
 RomanNumeralCalculator.c: RomanNumeralCalculator.h 
-ArabicToRomanConverter.c: ArabicToRomanConverter.h
-RomanToArabicConverter.c: RomanToArabicConverter.h
+Converter.c: Converter.h
+
+clean:
+	rm -f *.o

@@ -2,8 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "check_ArabicToRomanConverter.h"
-#include "check_RomanToArabicConverter.h"
+#include "check_Converter.h"
 #include "../src/RomanNumeralCalculator.h"
 
 void test_addition(char * numeral1, char * numeral2, char * expectedSum)
@@ -53,8 +52,7 @@ Suite * RomanNumeralSuite(void)
 	tcase_add_test(tc, addition_up_to_X);
 	tcase_add_test(tc, add_XI_and_V_to_get_XVI);
 	suite_add_tcase(s, tc);
-    suite_add_tcase(s, ArabicToRomanConverterTests());
-	suite_add_tcase(s, RomanToArabicConverterTests());
+    suite_add_tcase(s, ConverterTests());
 	return s;
 }
 
