@@ -6,67 +6,45 @@
 #include "check_RomanNumeralValidator.h"
 #include "../src/RomanNumeralCalculator.h"
 
-void test_addition(char * numeral1, char * numeral2, char * expectedSum)
+void test_evaluation(char * numeral1, char * numeral2, char * expectedResult, char op)
 {
-    char * result = RomanNumeralCalculator_evaluate(numeral1, numeral2, '+');
-    ck_assert_str_eq(result, expectedSum);
+	char * result = RomanNumeralCalculator_evaluate(numeral1, numeral2, op);
+    ck_assert_str_eq(result, expectedResult);
     free(result);
 }
-
-void test_subtraction(char * numeral1, char * numeral2, char * expectedSum)
-{
-    char * result = RomanNumeralCalculator_evaluate(numeral1, numeral2, '-');
-    ck_assert_str_eq(result, expectedSum);
-    free(result);
-}
-
-START_TEST (addition_returns_sum)
-{
-	test_addition("CCXII", "CXXI", "CCCXXXIII");		
-    test_addition("CCXXII", "CCXXII", "CDXLIV");
-	test_addition("CCCXXXIII", "CCXXII", "DLV");
-    test_addition("CCCXLIII", "CDXXIII", "DCCLXVI");
-    test_addition("CDLIV", "CDXXXIII", "DCCCLXXXVII");
-	test_addition("DCLIV", "DCXLIV", "MCCXCVIII");
-	test_addition("CMLXV", "DCXLIV", "MDCIX");
-	test_addition("CMXCV", "CMXLV", "MCMXL");
-	test_addition("MXCVI", "CMLV", "MMLI");
-	test_addition("MXCIX", "MXCV", "MMCXCIV");
-	test_addition("MMCIX", "MXCIX", "MMMCCVIII");
-}
-END_TEST
-
-START_TEST (subtraction_returns_difference)
-{
-	test_subtraction("MMMCMXCIX", "MMMDCLXXI", "CCCXXVIII");		
-    test_subtraction("MMMCDLXXVI", "MMMCCXLII", "CCXXXIV");
-	test_subtraction("MMMCCCXXXIII", "MMCMXCIX", "CCCXXXIV");
-    test_subtraction("MMMCXI", "MMDCLXXVIII", "CDXXXIII");
-    test_subtraction("MMCMLXIX", "MMCDLV", "DXIV");
-	test_subtraction("MMDCLIV", "MMCXLIV", "DX");
-	test_subtraction("MMDXX", "MCMXV", "DCV");
-	test_subtraction("MMCCCIX", "MDCXLII", "DCLXVII");
-	test_subtraction("MMCXCVI", "MCDXXXIII", "DCCLXIII");
-	test_subtraction("MCMXCIX", "MXCV", "CMIV");
-	test_subtraction("MDCCCVIII", "DCCIX", "MXCIX");
-}
-END_TEST
 
 START_TEST (evaluate_adds_numerals_plus_passed_in)
 {
-	char * expectedSum = "MMCMXCV";
-	char * result = RomanNumeralCalculator_evaluate("XCV", "MMCM", '+');
-    ck_assert_str_eq(result, expectedSum);
-    free(result);
+	test_evaluation("CCXII", "CXXI", "CCCXXXIII", '+');		
+    test_evaluation("CCXXII", "CCXXII", "CDXLIV", '+');
+	test_evaluation("CCCXXXIII", "CCXXII", "DLV", '+');
+    test_evaluation("CCCXLIII", "CDXXIII", "DCCLXVI", '+');
+    test_evaluation("CDLIV", "CDXXXIII", "DCCCLXXXVII", '+');
+	test_evaluation("DCLIV", "DCXLIV", "MCCXCVIII", '+');
+	test_evaluation("CMLXV", "DCXLIV", "MDCIX", '+');
+	test_evaluation("CMXCV", "CMXLV", "MCMXL", '+');
+	test_evaluation("MXCVI", "CMLV", "MMLI", '+');
+	test_evaluation("MXCIX", "MXCV", "MMCXCIV", '+');
+	test_evaluation("MMCIX", "MXCIX", "MMMCCVIII", '+');
+	test_evaluation("XCV", "MMCM", "MMCMXCV", '+');
 }
 END_TEST
 
 START_TEST (evaluate_subtracts_numerals_minus_passed_in)
 {
-	char * expectedSum = "MMCCXCV";
-	char * result = RomanNumeralCalculator_evaluate("MMCM", "DCV", '-');
-    ck_assert_str_eq(result, expectedSum);
-    free(result);
+	test_evaluation("MMMCMXCIX", "MMMDCLXXI", "CCCXXVIII", '-');		
+    test_evaluation("MMMCDLXXVI", "MMMCCXLII", "CCXXXIV", '-');
+	test_evaluation("MMMCCCXXXIII", "MMCMXCIX", "CCCXXXIV", '-');
+    test_evaluation("MMMCXI", "MMDCLXXVIII", "CDXXXIII", '-');
+    test_evaluation("MMCMLXIX", "MMCDLV", "DXIV", '-');
+	test_evaluation("MMDCLIV", "MMCXLIV", "DX", '-');
+	test_evaluation("MMDXX", "MCMXV", "DCV", '-');
+	test_evaluation("MMCCCIX", "MDCXLII", "DCLXVII", '-');
+	test_evaluation("MMCXCVI", "MCDXXXIII", "DCCLXIII", '-');
+	test_evaluation("MCMXCIX", "MXCV", "CMIV", '-');
+	test_evaluation("MDCCCVIII", "DCCIX", "MXCIX", '-');
+	test_evaluation("MMCM", "DCV", "MMCCXCV", '-');
+
 }
 END_TEST
 
@@ -86,8 +64,6 @@ Suite * RomanNumeralSuite(void)
 	s = suite_create("AllTests");
  
 	tc = tcase_create("RomanNumeralCalculatorTests");
-	tcase_add_test(tc, addition_returns_sum);
-	tcase_add_test(tc, subtraction_returns_difference);
 	tcase_add_test(tc, evaluate_adds_numerals_plus_passed_in);
 	tcase_add_test(tc, evaluate_subtracts_numerals_minus_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
