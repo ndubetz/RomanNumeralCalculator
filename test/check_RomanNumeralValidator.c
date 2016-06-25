@@ -37,13 +37,43 @@ END_TEST
 
 START_TEST (no_fives_digit_appears_more_than_once)
 {
-	ck_assert_int_eq(RomanNumeralValidator_is_valid("IV"), true);
 	ck_assert_int_eq(RomanNumeralValidator_is_valid("MDLV"), true);
 	ck_assert_int_eq(RomanNumeralValidator_is_valid("VV"),  false);
 	ck_assert_int_eq(RomanNumeralValidator_is_valid("DD"),  false);
 	ck_assert_int_eq(RomanNumeralValidator_is_valid("LL"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("XVV"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MMDDCC"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("DCCCLLXVI"),  false);
 }
 END_TEST
+
+START_TEST (numerals_in_proper_order)
+{
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MDCLXVI"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("CIL"), false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("LIC"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("XID"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("VIM"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("XVX"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("LVC"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("CVD"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("DVM"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("LXD"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("CXM"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("CLC"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("DLD"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MLM"),  false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MDM"),  false);	
+}
+END_TEST
+
+START_TEST (numerals_in_proper_order_subraction_cases)
+{
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MCDXLIV"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("MCMXCIX"), true);
+}
+END_TEST
+
 
 TCase * RomanNumeralValidatorTests(void)
 {
@@ -53,6 +83,7 @@ TCase * RomanNumeralValidatorTests(void)
 	tcase_add_test(tc, valid_digits);
 	tcase_add_test(tc, invalid_digits);
 	tcase_add_test(tc, no_fives_digit_appears_more_than_once);
+	tcase_add_test(tc, numerals_in_proper_order);
 	return tc;
 }
 

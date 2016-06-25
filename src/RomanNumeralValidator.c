@@ -1,9 +1,21 @@
+/*
+	TODO: replace with a regular expression
+*/
+
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
 #define VALID_NUMERALS_LENGTH 7
 
-const char VALID_NUMERALS[] = {'I','V','X','L','C','D','M'};
+const char * VALID_NUMERALS = "IVXLCDM";
+
+bool validate_order(char numeral, char previous_numeral)
+{
+	char * numIndex = strchr(VALID_NUMERALS, numeral);	
+	char * prevIndex = strchr(VALID_NUMERALS, previous_numeral);
+	return prevIndex - numIndex >= 0;
+}
 
 bool has_two_fives_digits(char numeral, char previous_numeral)
 {
@@ -26,28 +38,31 @@ bool validate_numeral(char numeral)
 	return false;
 }
 
-bool RomanNumeralValidator_can_convert(int arabic_number)
-{
-	return (arabic_number > 0) && (arabic_number < 4000);
-}
-
 bool RomanNumeralValidator_is_valid(char * roman_numeral)
 {
 	int j;
-	char previous_numeral;
-	bool has_invalid_numeral;
-	
+	char previous_numeral = 0;
 	for(j = 0; j < strlen(roman_numeral); j++)
 	{
-		has_invalid_numeral = !validate_numeral(roman_numeral[j]);
+		if(!validate_numeral(roman_numeral[j]))
+		{
+			return false;
+		}
 		
 		if(has_two_fives_digits(roman_numeral[j], previous_numeral))
 		{
 			return false;
 		}
+		if(previous_numeral && !validate_order(roman_numeral[j], previous_numeral))
+		{
+			return false;
+		}
 		previous_numeral = roman_numeral[j];
-		
 	}
-	
-	return !(has_invalid_numeral);
+	return strlen(roman_numeral) > 0;
+}
+
+bool RomanNumeralValidator_can_convert(int arabic_number)
+{
+	return (arabic_number > 0) && (arabic_number < 4000);
 }
