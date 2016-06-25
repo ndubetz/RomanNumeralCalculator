@@ -15,11 +15,33 @@ START_TEST (can_convert_to_roman_numeral)
 }
 END_TEST
 
+START_TEST (valid_digits)
+{
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("I"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("V"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("X"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("L"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("C"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("D"), true);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("M"), true);
+}
+END_TEST
+
+
+START_TEST (invalid_digits)
+{
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("J"), false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid(""),  false);
+}
+END_TEST
+
 TCase * RomanNumeralValidatorTests(void)
 {
 	TCase * tc;
 	tc = tcase_create("RomanNumeralValidatorTests");
 	tcase_add_test(tc, can_convert_to_roman_numeral);
+	tcase_add_test(tc, valid_digits);
+	tcase_add_test(tc, invalid_digits);
 	return tc;
 }
 
