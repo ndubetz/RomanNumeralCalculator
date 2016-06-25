@@ -46,6 +46,25 @@ START_TEST (convert_additive_numerals)
 }
 END_TEST
 
+START_TEST (convert_mixed_numerals)
+{
+	ck_assert_int_eq(RomanToArabicConverter_convert("XIV"), 14);
+	ck_assert_int_eq(RomanToArabicConverter_convert("XXIX"), 29);
+	ck_assert_int_eq(RomanToArabicConverter_convert("XLIV"), 44);
+	ck_assert_int_eq(RomanToArabicConverter_convert("LXIX"), 69);
+	ck_assert_int_eq(RomanToArabicConverter_convert("XCIX"), 99);
+	ck_assert_int_eq(RomanToArabicConverter_convert("CXLIV"), 144);
+	ck_assert_int_eq(RomanToArabicConverter_convert("CCXCII"), 292);
+	ck_assert_int_eq(RomanToArabicConverter_convert("CDXX"), 420);
+	ck_assert_int_eq(RomanToArabicConverter_convert("DXIV"), 514);
+	ck_assert_int_eq(RomanToArabicConverter_convert("CMXCIX"), 999);
+	ck_assert_int_eq(RomanToArabicConverter_convert("MCDXLIX"), 1449);
+	ck_assert_int_eq(RomanToArabicConverter_convert("MMCDIV"), 2404);
+	ck_assert_int_eq(RomanToArabicConverter_convert("MMMDXIX"), 3519);
+	ck_assert_int_eq(RomanToArabicConverter_convert("MMMCMXCIX"), 3999);
+}
+END_TEST
+
 TCase * RomanToArabicConverterTests(void)
 {
 	TCase * tc;
@@ -53,5 +72,6 @@ TCase * RomanToArabicConverterTests(void)
 	tcase_add_test(tc, convert_single_numerals);
 	tcase_add_test(tc, convert_subtractive_numerals);
 	tcase_add_test(tc, convert_additive_numerals);
+	tcase_add_test(tc, convert_mixed_numerals);
 	return tc;
 }
