@@ -3,18 +3,21 @@
 
 #include "Converter.h"
 
-char * RomanNumeralCalculator_add(char * numeral1, char * numeral2)
+char * RomanNumeralCalculator_evaluate(char * numeral1, char * numeral2, char op)
 {
     int number1 = Converter_roman_to_arabic(numeral1);
     int number2 = Converter_roman_to_arabic(numeral2);    
-    char * sum = Converter_arabic_to_roman(number1 + number2);    
-    return sum;
-}
-
-char * RomanNumeralCalculator_subtract(char * numeral1, char * numeral2)
-{
-    int number1 = Converter_roman_to_arabic(numeral1);
-    int number2 = Converter_roman_to_arabic(numeral2);    
-    char * sum = Converter_arabic_to_roman(number1 - number2);    
-    return sum;
+    
+    if(op == '+')
+	{
+		return Converter_arabic_to_roman(number1 + number2);
+	}
+	else if(op == '-')
+	{
+		return Converter_arabic_to_roman(number1 - number2);
+	}
+	else
+	{
+		return "Invalid Operator.";
+	}
 }

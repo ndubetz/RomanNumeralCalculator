@@ -8,14 +8,14 @@
 
 void test_addition(char * numeral1, char * numeral2, char * expectedSum)
 {
-    char * result = RomanNumeralCalculator_add(numeral1, numeral2);
+    char * result = RomanNumeralCalculator_evaluate(numeral1, numeral2, '+');
     ck_assert_str_eq(result, expectedSum);
     free(result);
 }
 
 void test_subtraction(char * numeral1, char * numeral2, char * expectedSum)
 {
-    char * result = RomanNumeralCalculator_subtract(numeral1, numeral2);
+    char * result = RomanNumeralCalculator_evaluate(numeral1, numeral2, '-');
     ck_assert_str_eq(result, expectedSum);
     free(result);
 }
@@ -52,6 +52,31 @@ START_TEST (subtraction_returns_difference)
 }
 END_TEST
 
+START_TEST (evaluate_adds_numerals_plus_passed_in)
+{
+	char * expectedSum = "MMCMXCV";
+	char * result = RomanNumeralCalculator_evaluate("XCV", "MMCM", '+');
+    ck_assert_str_eq(result, expectedSum);
+    free(result);
+}
+END_TEST
+
+START_TEST (evaluate_subtracts_numerals_minus_passed_in)
+{
+	char * expectedSum = "MMCCXCV";
+	char * result = RomanNumeralCalculator_evaluate("MMCM", "DCV", '-');
+    ck_assert_str_eq(result, expectedSum);
+    free(result);
+}
+END_TEST
+
+START_TEST (evaluate_returns_message_if_invalid_operator_passed_in)
+{
+	char * expectedSum = "Invalid Operator.";
+	char * result = RomanNumeralCalculator_evaluate("MCM", "DII", '%');
+    ck_assert_str_eq(result, expectedSum);
+}
+END_TEST
 
 Suite * RomanNumeralSuite(void)
 {
@@ -63,6 +88,9 @@ Suite * RomanNumeralSuite(void)
 	tc = tcase_create("RomanNumeralCalculatorTests");
 	tcase_add_test(tc, addition_returns_sum);
 	tcase_add_test(tc, subtraction_returns_difference);
+	tcase_add_test(tc, evaluate_adds_numerals_plus_passed_in);
+	tcase_add_test(tc, evaluate_subtracts_numerals_minus_passed_in);
+	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
 	suite_add_tcase(s, tc);
     suite_add_tcase(s, ConverterTests());
 	suite_add_tcase(s, RomanNumeralValidatorTests());
