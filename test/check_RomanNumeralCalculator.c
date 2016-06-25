@@ -54,6 +54,38 @@ START_TEST (evaluate_returns_message_if_invalid_operator_passed_in)
 }
 END_TEST
 
+START_TEST (evaluate_returns_message_if_invalid_first_roman_numeral_passed_in)
+{
+	char * expectedSum = "Invalid Roman Numeral.";
+	char * result = RomanNumeralCalculator_evaluate("MVVM", "DII", '+');
+    ck_assert_str_eq(result, expectedSum);
+}
+END_TEST
+
+START_TEST (evaluate_returns_message_if_invalid_second_roman_numeral_passed_in)
+{
+	char * expectedSum = "Invalid Roman Numeral.";
+	char * result = RomanNumeralCalculator_evaluate("MM", "VIM", '+');
+    ck_assert_str_eq(result, expectedSum);
+}
+END_TEST
+
+START_TEST (evaluate_returns_message_if_sum_is_unable_to_convert_to_roman)
+{
+	char * expectedSum = "Result cannot be converted to a roman numeral.";
+	char * result = RomanNumeralCalculator_evaluate("MCM", "MMM", '+');
+    ck_assert_str_eq(result, expectedSum);
+}
+END_TEST
+
+START_TEST (evaluate_returns_message_if_difference_is_unable_to_convert_to_roman)
+{
+	char * expectedSum = "Result cannot be converted to a roman numeral.";
+	char * result = RomanNumeralCalculator_evaluate("MCM", "MMM", '-');
+    ck_assert_str_eq(result, expectedSum);
+}
+END_TEST
+
 TCase * RomanNumeralCalculatorTests(void)
 {
 	TCase * tc;
@@ -61,6 +93,10 @@ TCase * RomanNumeralCalculatorTests(void)
 	tcase_add_test(tc, evaluate_adds_numerals_plus_passed_in);
 	tcase_add_test(tc, evaluate_subtracts_numerals_minus_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
+	tcase_add_test(tc, evaluate_returns_message_if_invalid_first_roman_numeral_passed_in);
+	tcase_add_test(tc, evaluate_returns_message_if_invalid_second_roman_numeral_passed_in);
+	tcase_add_test(tc, evaluate_returns_message_if_sum_is_unable_to_convert_to_roman);
+	tcase_add_test(tc, evaluate_returns_message_if_difference_is_unable_to_convert_to_roman);
 	return tc;
 }
 
