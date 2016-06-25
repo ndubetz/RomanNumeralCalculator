@@ -11,6 +11,10 @@ The environment for this kata is the following:
 - Check unit testing framework ( https://libcheck.github.io/check/ )
 - git
 
+## Running the Tests:
+
+To run the unit tests, `cd` into the `test` folder and run `make`
+
 ## Roman Numeral rules:
 
 - Roman numerals consist of the following letters: I, V, X, L, C, D, and M which mean one, five, ten, fifty, hundred, five hundred and one thousand respectively.  
