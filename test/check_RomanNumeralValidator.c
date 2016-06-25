@@ -74,7 +74,6 @@ START_TEST (numerals_in_proper_order_subraction_cases)
 }
 END_TEST
 
-
 TCase * RomanNumeralValidatorTests(void)
 {
 	TCase * tc;
@@ -84,6 +83,7 @@ TCase * RomanNumeralValidatorTests(void)
 	tcase_add_test(tc, invalid_digits);
 	tcase_add_test(tc, no_fives_digit_appears_more_than_once);
 	tcase_add_test(tc, numerals_in_proper_order);
+	tcase_add_test(tc, numerals_in_proper_order_subraction_cases);
 	return tc;
 }
 

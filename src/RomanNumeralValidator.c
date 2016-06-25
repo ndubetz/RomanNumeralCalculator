@@ -1,5 +1,6 @@
 /*
-	TODO: replace with a regular expression
+	TODO: replace with a single regular expression
+			that does most of the work
 */
 
 #include <stdlib.h>
@@ -15,9 +16,18 @@ char * get_index(char numeral)
 	return strchr(VALID_NUMERALS, numeral);
 }
 
+bool is_valid_subtraction(num_index, prev_index)
+{
+	return (prev_index - num_index == -1 || prev_index - num_index == -2)
+		&& (prev_index == get_index('I') 
+			||	prev_index == get_index('X')
+			||  prev_index == get_index('C'));
+}
+
 bool validate_order(char * num_index, char * prev_index)
 {
-	return prev_index - num_index >= 0;
+	return prev_index - num_index >= 0
+		|| is_valid_subtraction(num_index, prev_index);
 }
 
 bool has_two_fives_digits(char * num_index, char * prev_index)
