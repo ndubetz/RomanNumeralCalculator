@@ -13,31 +13,24 @@ void test_addition(char * numeral1, char * numeral2, char * expectedSum)
     free(result);
 }
 
-START_TEST (addition_up_to_X)
+START_TEST (addition_returns_sum)
 {
-	test_addition("I", "I", "II");		
-    test_addition("II", "I", "III");
-	test_addition("II", "II", "IV");
-    test_addition("III", "II", "V");
-    test_addition("IV", "I", "V");
-	test_addition("IV", "II", "VI");
-	test_addition("IV", "IV", "VIII");
-	test_addition("V", "IV", "IX");
-	test_addition("V", "V", "X");
-	test_addition("IX", "I", "X");
-	test_addition("II", "VIII", "X");
-}
-END_TEST
-
-START_TEST (add_XI_and_V_to_get_XVI)
-{
-	test_addition("XI", "V", "XVI");		
+	test_addition("CCXII", "CXXI", "CCCXXXIII");		
+    test_addition("CCXXII", "CCXXII", "CDXLIV");
+	test_addition("CCCXXXIII", "CCXXII", "DLV");
+    test_addition("CCCXLIII", "CDXXIII", "DCCLXVI");
+    test_addition("CDLIV", "CDXXXIII", "DCCCLXXXVII");
+	test_addition("DCLIV", "DCXLIV", "MCCXCVIII");
+	test_addition("CMLXV", "DCXLIV", "MDCIX");
+	test_addition("CMXCV", "CMXLV", "MCMXL");
+	test_addition("MXCVI", "CMLV", "MMLI");
+	test_addition("MXCIX", "MXCV", "MMCXCIV");
+	test_addition("MMCIX", "MXCIX", "MMMCCVIII");
 }
 END_TEST
 
 /*
     TODO 
-    modify and finish addition cases
     add subtraction cases
 */
 
@@ -49,9 +42,8 @@ Suite * RomanNumeralSuite(void)
 	
 	s = suite_create("AllTests");
  
-	tc = tcase_create("AllTests");
-	tcase_add_test(tc, addition_up_to_X);
-	tcase_add_test(tc, add_XI_and_V_to_get_XVI);
+	tc = tcase_create("RomanNumeralCalculatorTests");
+	tcase_add_test(tc, addition_returns_sum);
 	suite_add_tcase(s, tc);
     suite_add_tcase(s, ConverterTests());
 	suite_add_tcase(s, RomanNumeralValidatorTests());
