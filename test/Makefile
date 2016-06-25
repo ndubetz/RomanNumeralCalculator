@@ -6,14 +6,16 @@ VPATH=../src
 OBJECTS = RomanNumeralCalculator.o Converter.o RomanNumeralValidator.o
         
 TEST_OBJECTS = check_RomanNumeralCalculator.o check_Converter.o \
-                check_RomanNumeralValidator.o
+                check_RomanNumeralValidator.o AllTests.o
 
-test: test_roman
-	./test_roman
+test: run_all_tests
+	./run_all_tests
 
-test_roman: $(OBJECTS) $(TEST_OBJECTS)
+run_all_tests: $(OBJECTS) $(TEST_OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+
+AllTests.o: $(TEST_OBJECTS)
 
 clean:
 	rm -f *.o
-	rm -f test_roman
+	rm -f run_all_tests

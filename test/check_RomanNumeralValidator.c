@@ -27,10 +27,10 @@ START_TEST (valid_digits)
 }
 END_TEST
 
-
 START_TEST (invalid_digits)
 {
 	ck_assert_int_eq(RomanNumeralValidator_is_valid("J"), false);
+	ck_assert_int_eq(RomanNumeralValidator_is_valid("1"), false);
 	ck_assert_int_eq(RomanNumeralValidator_is_valid(""),  false);
 }
 END_TEST

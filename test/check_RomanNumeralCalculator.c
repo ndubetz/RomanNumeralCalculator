@@ -2,8 +2,6 @@
 #include <string.h>
 #include <check.h>
 
-#include "check_Converter.h"
-#include "check_RomanNumeralValidator.h"
 #include "../src/RomanNumeralCalculator.h"
 
 void test_evaluation(char * numeral1, char * numeral2, char * expectedResult, char op)
@@ -56,35 +54,14 @@ START_TEST (evaluate_returns_message_if_invalid_operator_passed_in)
 }
 END_TEST
 
-Suite * RomanNumeralSuite(void)
+TCase * RomanNumeralCalculatorTests(void)
 {
-	Suite * s;
 	TCase * tc;
-	
-	s = suite_create("AllTests");
- 
 	tc = tcase_create("RomanNumeralCalculatorTests");
 	tcase_add_test(tc, evaluate_adds_numerals_plus_passed_in);
 	tcase_add_test(tc, evaluate_subtracts_numerals_minus_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
-	suite_add_tcase(s, tc);
-    suite_add_tcase(s, ConverterTests());
-	suite_add_tcase(s, RomanNumeralValidatorTests());
-	return s;
+	return tc;
 }
 
-int main(int argc, char **argv)
-{
-	Suite * s;
-	SRunner * runner;
-	int number_fails;
-	
-	s = RomanNumeralSuite();
-	runner = srunner_create(s);
-	srunner_run_all(runner, CK_NORMAL);
-	number_fails = srunner_ntests_failed(runner);
-	srunner_free(runner);
-
-	return number_fails;
-}
 
