@@ -6,20 +6,20 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define VALID_NUMERALS_LENGTH 7
+#define NUMERALS 7
+#define ONES_DIGIT_LIMIT 3
+#define FIVES_DIGIT_LIMIT 1
 
-int I_count;
-int X_count;
-int C_count;
-int M_count;
+int NUMERAL_COUNTS[NUMERALS];
 const char * VALID_NUMERALS = "IVXLCDM";
 
 void init_counts()
 {
-	I_count = 0;
-	X_count = 0;
-	C_count = 0;
-	M_count = 0;
+	int i;
+	for(i = 0; i < NUMERALS; i++)
+	{
+		NUMERAL_COUNTS[i] = 0;
+	} 
 }
 
 char * get_index(char numeral)
@@ -29,26 +29,22 @@ char * get_index(char numeral)
 
 bool increment_counts(char numeral)
 {
-	switch(numeral)
-	{
-		case 'I':
-			I_count++;
-			break;
-		case 'X':
-			X_count++;
-			break;
-		case 'C':
-			C_count++;
-			break;
-		case 'M':
-			M_count++;
-			break;
-	}
+	int index = (get_index(numeral) - get_index('I'));
+	NUMERAL_COUNTS[index]++;
 }
 
 bool validate_counts()
 {
-	return I_count < 4 && X_count < 4 && C_count < 4 && M_count < 4;
+	int i;
+	for(i = 0; i < NUMERALS; i++){
+		int count_limit = (i % 2 == 0) 
+			? ONES_DIGIT_LIMIT 
+			: FIVES_DIGIT_LIMIT;
+		if(NUMERAL_COUNTS[i] > count_limit){
+			return false;
+		} 
+	}
+	return true;
 }
 
 bool is_valid_subtraction(char * num_index, char * prev_index)
@@ -71,14 +67,6 @@ bool validate_order(char numeral, char * num_index, char * prev_index)
 		|| valid_subtraction;
 }
 
-bool has_two_fives_digits(char * num_index, char * prev_index)
-{
-	bool two_Vs = num_index == prev_index && prev_index == get_index('V');
-	bool two_Ls = num_index == prev_index && prev_index == get_index('L');
-	bool two_Ds = num_index == prev_index && prev_index == get_index('D');
-	return two_Vs || two_Ls || two_Ds;
-}
-
 bool validate_numeral(char * num_index)
 {
 	return num_index >= get_index('I') && num_index <= get_index('M');
@@ -88,8 +76,7 @@ bool validate(char numeral, char * num_index, char * prev_index)
 {
 	return validate_numeral(num_index)
 		&& validate_order(numeral, num_index, prev_index)
-		&& validate_counts()
-		&& !has_two_fives_digits(num_index, prev_index);
+		&& validate_counts();
 }
 
 bool RomanNumeralValidator_is_valid(char * roman_numeral)
