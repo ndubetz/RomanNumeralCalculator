@@ -2,11 +2,13 @@
 CFLAGS =  `pkg-config --cflags check`
 LIBS = `pkg-config --libs check`
 VPATH=../src
-
-OBJECTS = RomanNumeralCalculator.o Converter.o RomanNumeralValidator.o
         
 TEST_OBJECTS = check_RomanNumeralCalculator.o check_Converter.o \
                 check_RomanNumeralValidator.o
+
+OBJECTS = Converter.o RomanNumeralValidator.o RomanNumeralCalculator.o
+
+.PHONY: clean test 
 
 test: run_all_tests
 	./run_all_tests
@@ -19,3 +21,4 @@ AllTests.o: $(TEST_OBJECTS)
 clean:
 	rm -f *.o
 	rm -f run_all_tests
+

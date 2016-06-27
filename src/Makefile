@@ -1,13 +1,21 @@
 
-OBJECTS = Converter.o RomanNumeralCalculator.o RomanNumeralValidator.o 
+OBJECTS = Converter.o RomanNumeralValidator.o RomanNumeralCalculator.o main.o
 
-.PHONY: all
+CFLAGS = -g
 
-all: $(OBJECTS)
+.PHONY: all clean
 
-RomanNumeralCalculator.c: RomanNumeralCalculator.h 
-RomanNumeralValidator.c: RomanNumeralValidator.h
-Converter.c: Converter.h
+all: roman_calculator
 
 clean:
 	rm -f *.o
+
+roman_calculator: $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+
+Converter.c: Converter.h
+
+RomanNumeralValidator.c: RomanNumeralValidator.h
+
+RomanNumeralCalculator.c: RomanNumeralCalculator.h 
+
