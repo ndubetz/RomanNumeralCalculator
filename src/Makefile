@@ -9,10 +9,11 @@ all: roman_calculator
 
 clean:
 	rm -f *.o
+	rm -f ../roman_calculator
 	rm -f roman_calculator
 
 roman_calculator: $(OBJECTS)
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o ../$@ $^ $(LIBS)
 
 Converter.c: Converter.h
 
