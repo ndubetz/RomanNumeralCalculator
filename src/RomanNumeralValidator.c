@@ -22,28 +22,28 @@ void init_counts()
 	} 
 }
 
-char * get_index(char numeral)
+int get_index(char numeral)
 {
-	return strchr(VALID_NUMERALS, numeral);
+	return strchr(VALID_NUMERALS, numeral) - strchr(VALID_NUMERALS, 'I');
 }
 
-void increment_count(char * num_index)
+void increment_count(int num_index)
 {
-	NUMERAL_COUNTS[num_index - get_index('I')]++;
+	NUMERAL_COUNTS[num_index]++;
 }
 
-void increment_counts_for_subtraction(char * num_index, char * prev_index)
+void increment_counts_for_subtraction(int num_index, int prev_index)
 {
 	if(prev_index - num_index == -1)
 	{
-		NUMERAL_COUNTS[num_index - get_index('I') - 1] += (ONES_DIGIT_LIMIT - 1);
+		NUMERAL_COUNTS[num_index - 1] += (ONES_DIGIT_LIMIT - 1);
 		increment_count(num_index);	
 	}
 	else
 	{
-		NUMERAL_COUNTS[num_index - get_index('I') - 2] += (ONES_DIGIT_LIMIT - 1);	
-		NUMERAL_COUNTS[num_index - get_index('I') - 1]  = FIVES_DIGIT_LIMIT;	
-		NUMERAL_COUNTS[num_index - get_index('I')]      = ONES_DIGIT_LIMIT;	
+		NUMERAL_COUNTS[num_index - 2] += (ONES_DIGIT_LIMIT - 1);	
+		NUMERAL_COUNTS[num_index - 1]  = FIVES_DIGIT_LIMIT;	
+		NUMERAL_COUNTS[num_index]      = ONES_DIGIT_LIMIT;	
 	}
 }
 
@@ -61,7 +61,7 @@ bool validate_counts()
 	return true;
 }
 
-bool is_valid_subtraction(char * num_index, char * prev_index)
+bool is_valid_subtraction(int num_index, int prev_index)
 {
 	return (prev_index - num_index == -1 
 			|| prev_index - num_index == -2)
@@ -70,7 +70,7 @@ bool is_valid_subtraction(char * num_index, char * prev_index)
 			||  prev_index == get_index('C'));
 }
 
-bool validate_order(char * num_index, char * prev_index)
+bool validate_order(int num_index, int prev_index)
 {
 	bool valid_subtraction = is_valid_subtraction(num_index, prev_index);
 	if(valid_subtraction)
@@ -85,12 +85,12 @@ bool validate_order(char * num_index, char * prev_index)
 		|| valid_subtraction;
 }
 
-bool validate_numeral(char * num_index)
+bool validate_numeral(int num_index)
 {
 	return num_index >= get_index('I') && num_index <= get_index('M');
 }
 
-bool validate(char * num_index, char * prev_index)
+bool validate(int num_index, int prev_index)
 {
 	return validate_numeral(num_index)
 		&& validate_order(num_index, prev_index)
@@ -107,8 +107,8 @@ bool RomanNumeralValidator_is_valid(char * roman_numeral)
 	for(j = 0; j < roman_numeral_length; j++)
 	{
 		char numeral = roman_numeral[j];
-		char * num_index = get_index(numeral);	
-		char * prev_index = get_index(previous_numeral);
+		int num_index = get_index(numeral);	
+		int prev_index = get_index(previous_numeral);
 		
 		if(!validate(num_index, prev_index))
 		{

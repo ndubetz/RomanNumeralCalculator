@@ -12,6 +12,6 @@ clean:
 src:
 	$(MAKE) -C src
 
-test: src
+test: clean src
 	$(MAKE) -C test
 
