@@ -27,10 +27,24 @@ char * get_index(char numeral)
 	return strchr(VALID_NUMERALS, numeral);
 }
 
-bool increment_counts(char numeral)
+void increment_count(char * num_index)
 {
-	int index = (get_index(numeral) - get_index('I'));
-	NUMERAL_COUNTS[index]++;
+	NUMERAL_COUNTS[num_index - get_index('I')]++;
+}
+
+void increment_counts_for_subtraction(char * num_index, char * prev_index)
+{
+	if(prev_index - num_index == -1)
+	{
+		NUMERAL_COUNTS[num_index - get_index('I') - 1] += (ONES_DIGIT_LIMIT - 1);
+		increment_count(num_index);	
+	}
+	else
+	{
+		NUMERAL_COUNTS[num_index - get_index('I') - 2] += (ONES_DIGIT_LIMIT - 1);	
+		NUMERAL_COUNTS[num_index - get_index('I') - 1]  = FIVES_DIGIT_LIMIT;	
+		NUMERAL_COUNTS[num_index - get_index('I')]      = ONES_DIGIT_LIMIT;	
+	}
 }
 
 bool validate_counts()
@@ -56,12 +70,16 @@ bool is_valid_subtraction(char * num_index, char * prev_index)
 			||  prev_index == get_index('C'));
 }
 
-bool validate_order(char numeral, char * num_index, char * prev_index)
+bool validate_order(char * num_index, char * prev_index)
 {
 	bool valid_subtraction = is_valid_subtraction(num_index, prev_index);
-	if(!valid_subtraction)
+	if(valid_subtraction)
 	{
-		increment_counts(numeral);
+		increment_counts_for_subtraction(num_index, prev_index);
+	}
+	else
+	{
+		increment_count(num_index);
 	}
 	return prev_index - num_index >= 0
 		|| valid_subtraction;
@@ -72,10 +90,10 @@ bool validate_numeral(char * num_index)
 	return num_index >= get_index('I') && num_index <= get_index('M');
 }
 
-bool validate(char numeral, char * num_index, char * prev_index)
+bool validate(char * num_index, char * prev_index)
 {
 	return validate_numeral(num_index)
-		&& validate_order(numeral, num_index, prev_index)
+		&& validate_order(num_index, prev_index)
 		&& validate_counts();
 }
 
@@ -92,7 +110,7 @@ bool RomanNumeralValidator_is_valid(char * roman_numeral)
 		char * num_index = get_index(numeral);	
 		char * prev_index = get_index(previous_numeral);
 		
-		if(!validate(numeral, num_index, prev_index))
+		if(!validate(num_index, prev_index))
 		{
 			return false;
 		}
