@@ -11,9 +11,13 @@ The environment for this kata is the following:
 - Check unit testing framework ( https://libcheck.github.io/check/ )
 - git
 
-## Running the Tests:
+## Build
 
-To run the unit tests, `cd` into the `test` folder and run `make`
+- Running `make` at the root directory cleans the project, builds the project, and runs all tests.
+
+## Usage
+
+- `./roman_calculator ROMAN_NUMERAL [+|-] ROMAN_NUMERAL`
 
 ## Roman Numeral rules:
 

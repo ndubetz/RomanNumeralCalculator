@@ -1,8 +1,3 @@
-/*
-	TODO: replace with a single regular expression
-			that does most of the work
-*/
-
 #include <string.h>
 #include <stdbool.h>
 
@@ -54,7 +49,8 @@ bool validate_counts()
 		int count_limit = (i % 2 == 0) 
 			? ONES_DIGIT_LIMIT 
 			: FIVES_DIGIT_LIMIT;
-		if(NUMERAL_COUNTS[i] > count_limit){
+		if(NUMERAL_COUNTS[i] > count_limit)
+		{
 			return false;
 		} 
 	}
