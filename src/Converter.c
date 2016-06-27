@@ -36,7 +36,7 @@ char * Converter_arabic_to_roman(int arabic_number)
 {
 	char * roman_numeral = calloc(16, sizeof(char));
     int i = 0;
-    while(arabic_number > 0)
+    while(arabic_number)
     {
         if(arabic_number >= ARABIC_TO_ROMAN[i].arabic)
         {

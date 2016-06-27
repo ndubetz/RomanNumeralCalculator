@@ -48,7 +48,6 @@ START_TEST (evaluate_subtracts_numerals_minus_passed_in)
 	test_evaluation("MCMXCIX", "MXCV", "CMIV", '-');
 	test_evaluation("MDCCCVIII", "DCCIX", "MXCIX", '-');
 	test_evaluation("MMCM", "DCV", "MMCCXCV", '-');
-
 }
 END_TEST
 
@@ -74,6 +73,19 @@ START_TEST (evaluate_returns_message_if_result_is_unable_to_convert_to_roman)
 }
 END_TEST
 
+START_TEST (evaluate_is_case_insensitive)
+{
+	test_evaluation("CcXiI", "CXXi", "CCCXXXIII", '+');		
+    test_evaluation("cCxXiI", "CcXxIi", "CDXLIV", '+');
+	test_evaluation("CDlIv", "CdXXXIII", "DCCCLXXXVII", '+');
+	test_evaluation("MmDXX", "MCmxV", "DCV", '-');
+	test_evaluation("MmcCCiX", "MDcxlII", "DCLXVII", '-');
+	test_evaluation("MmcxcvI", "MCDxxxiii", "DCCLXIII", '-');
+	test_evaluation("mcmxcix", "mxcv", "CMIV", '-');
+	test_evaluation("mdcccviii", "dccix", "MXCIX", '-');
+}
+END_TEST
+
 TCase * RomanNumeralCalculatorTests(void)
 {
 	TCase * tc;
@@ -83,6 +95,7 @@ TCase * RomanNumeralCalculatorTests(void)
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_roman_numeral_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_result_is_unable_to_convert_to_roman);
+	tcase_add_test(tc, evaluate_is_case_insensitive);
 	return tc;
 }
 
