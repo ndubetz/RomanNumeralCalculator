@@ -1,15 +1,17 @@
 #include <check.h>
 
 #include "check_Converter.h"
-#include "check_RomanNumeralValidator.h"
 #include "check_RomanNumeralCalculator.h"
+#include "check_RomanNumeralValidator.h"
+#include "check_App.h"
 
 Suite * RomanNumeralSuite(void)
 {
 	Suite * s;
 	s = suite_create("AllTests"); 
- 	suite_add_tcase(s, RomanNumeralCalculatorTests());
+	suite_add_tcase(s, AppTests());
     suite_add_tcase(s, ConverterTests());
+ 	suite_add_tcase(s, RomanNumeralCalculatorTests());
 	suite_add_tcase(s, RomanNumeralValidatorTests());
 	return s;
 }

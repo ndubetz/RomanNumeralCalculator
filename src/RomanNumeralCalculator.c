@@ -50,7 +50,5 @@ char * RomanNumeralCalculator_evaluate(char * numeral1, char * numeral2, char op
 			return convert_result(number1 + number2);
 		case '-':
 			return convert_result(number1 - number2);
-		default:
-			return "Invalid Operator.";
 	}
 }

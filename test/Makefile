@@ -4,9 +4,9 @@ LIBS = `pkg-config --libs check`
 VPATH=../src
         
 TEST_OBJECTS = check_RomanNumeralCalculator.o check_Converter.o \
-                check_RomanNumeralValidator.o
+                check_RomanNumeralValidator.o check_App.o
 
-OBJECTS = Converter.o RomanNumeralValidator.o RomanNumeralCalculator.o
+OBJECTS = Converter.o RomanNumeralValidator.o RomanNumeralCalculator.o App.o
 
 .PHONY: clean test 
 

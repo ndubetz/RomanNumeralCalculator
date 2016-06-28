@@ -51,12 +51,6 @@ START_TEST (evaluate_subtracts_numerals_minus_passed_in)
 }
 END_TEST
 
-START_TEST (evaluate_returns_message_if_invalid_operator_passed_in)
-{
-	test_invalid_evaluation("MCM", "DII", "Invalid Operator.", '%');
-}
-END_TEST
-
 START_TEST (evaluate_returns_message_if_invalid_roman_numeral_passed_in)
 {
 	test_invalid_evaluation("MVVM", "DII", "Invalid Roman Numeral.", '+');
@@ -92,7 +86,6 @@ TCase * RomanNumeralCalculatorTests(void)
 	tc = tcase_create("RomanNumeralCalculatorTests");
 	tcase_add_test(tc, evaluate_adds_numerals_plus_passed_in);
 	tcase_add_test(tc, evaluate_subtracts_numerals_minus_passed_in);
-	tcase_add_test(tc, evaluate_returns_message_if_invalid_operator_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_invalid_roman_numeral_passed_in);
 	tcase_add_test(tc, evaluate_returns_message_if_result_is_unable_to_convert_to_roman);
 	tcase_add_test(tc, evaluate_is_case_insensitive);
