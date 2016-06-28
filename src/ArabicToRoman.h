@@ -1,5 +1,7 @@
 
 
+#ifndef _ARABIC_TO_ROMAN_H_
+#define _ARABIC_TO_ROMAN_H_
 
 struct arabic_to_roman 
 {
@@ -26,3 +28,4 @@ const struct arabic_to_roman ARABIC_TO_ROMAN[] =
 
 #define ARABIC_TO_ROMAN_LENGTH sizeof(ARABIC_TO_ROMAN) / sizeof(ARABIC_TO_ROMAN[0])
 
+#endif
