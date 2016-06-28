@@ -1,7 +1,7 @@
 
 
-#ifndef _CHECK_ROMAN_NUMERAL_CALCULATOR_H_
-#define _CHECK_ROMAN_NUMERAL_CALCULATOR_H_
+#ifndef _CHECK_ROMAN_NUMERAL_VALIDATOR_H_
+#define _CHECK_ROMAN_NUMERAL_VALIDATOR_H_
 
 TCase * RomanNumeralValidatorTests(void);
 

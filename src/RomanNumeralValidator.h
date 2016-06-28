@@ -1,7 +1,7 @@
 
 
-#ifndef _ROMAN_NUMERAL_CALCULATOR_H_
-#define _ROMAN_NUMERAL_CALCULATOR_H_
+#ifndef _ROMAN_NUMERAL_VALIDATOR_H_
+#define _ROMAN_NUMERAL_VALIDATOR_H_
 
 #include <stdbool.h>
 
