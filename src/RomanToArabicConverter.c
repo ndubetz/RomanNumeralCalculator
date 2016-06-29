@@ -1,13 +1,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "RomanToArabicConverter.h"
 #include "ArabicToRoman.h"
 
 int convert_numeral(char numeral)
 {
     const char numeral_as_string[] = {numeral, '\0'};
 	int i;
-	for (i = 0; i < ARABIC_TO_ROMAN_LENGTH; i++)
+	for (i = 0; i < arabic_to_roman_length; i++)
 	{
 		if(strcmp(numeral_as_string, ARABIC_TO_ROMAN[i].roman) == 0)
 		{
@@ -16,7 +17,7 @@ int convert_numeral(char numeral)
 	}
 }
 
-int Converter_roman_to_arabic(char * roman_numeral)
+int RomanToArabicConverter_convert(char * roman_numeral)
 {
 	int arabic_number = 0;
     int previous_value = 0;
@@ -32,21 +33,3 @@ int Converter_roman_to_arabic(char * roman_numeral)
     return arabic_number;
 }
 
-char * Converter_arabic_to_roman(int arabic_number)
-{
-	char * roman_numeral = calloc(16, sizeof(char));
-    int i = 0;
-    while(arabic_number)
-    {
-        if(arabic_number >= ARABIC_TO_ROMAN[i].arabic)
-        {
-            strcat(roman_numeral, ARABIC_TO_ROMAN[i].roman);
-            arabic_number -= ARABIC_TO_ROMAN[i].arabic;
-        }  
-        else
-        {
-            i++;
-        }
-    }
-    return roman_numeral;
-}

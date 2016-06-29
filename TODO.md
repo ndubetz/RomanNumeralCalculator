@@ -8,3 +8,5 @@
 - Separate Converter and move ArabicToRoman to App
 - Move Validator from Calculator to App
 
+- On a separate branch, reimplement Calculator to add and subtract without using
+  the Converters

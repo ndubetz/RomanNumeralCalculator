@@ -2,7 +2,8 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "Converter.h"
+#include "ArabicToRomanConverter.h"
+#include "RomanToArabicConverter.h"
 #include "RomanNumeralValidator.h"
 
 char * convert_result(int result)
@@ -11,7 +12,7 @@ char * convert_result(int result)
 		{
 			return "Result cannot be converted to a roman numeral.";
 		}
-	return Converter_arabic_to_roman(result);
+	return ArabicToRomanConverter_convert(result);
 }
 
 char * get_upper_case_copy(char * numeral)
@@ -38,8 +39,8 @@ char * RomanNumeralCalculator_evaluate(char * numeral1, char * numeral2, char op
 		return "Invalid Roman Numeral.";    	
     }
     
-    int number1 = Converter_roman_to_arabic(copy_numeral1);
-    int number2 = Converter_roman_to_arabic(copy_numeral2);    
+    int number1 = RomanToArabicConverter_convert(copy_numeral1);
+    int number2 = RomanToArabicConverter_convert(copy_numeral2);    
     
     free(copy_numeral1);
 	free(copy_numeral2);

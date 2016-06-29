@@ -1,5 +1,5 @@
 
-OBJECTS = Converter.o RomanNumeralValidator.o RomanNumeralCalculator.o App.o main.o
+OBJECTS = ArabicToRoman.o RomanToArabicConverter.o ArabicToRomanConverter.o RomanNumeralValidator.o RomanNumeralCalculator.o App.o main.o
 
 CFLAGS = -g
 
@@ -15,10 +15,4 @@ roman_calculator: $(OBJECTS)
 	$(CC) $(CFLAGS) -o ../$@ $^ $(LIBS)
 
 App.c: App.h
-
-Converter.c: Converter.h
-
-RomanNumeralValidator.c: RomanNumeralValidator.h
-
-RomanNumeralCalculator.c: RomanNumeralCalculator.h 
 
