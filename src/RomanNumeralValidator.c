@@ -1,6 +1,8 @@
 #include <string.h>
 #include <stdbool.h>
 
+#include "RomanNumeralValidator.h"
+
 #define NUMERALS 7
 #define ONES_DIGIT_LIMIT 3
 #define FIVES_DIGIT_LIMIT 1

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "RomanNumeralCalculator.h"
 #include "ArabicToRomanConverter.h"
 #include "RomanToArabicConverter.h"
 #include "RomanNumeralValidator.h"
