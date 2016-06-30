@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "RomanToArabicConverter.h"
-#include "ArabicToRoman.h"
+#include "include/RomanToArabicConverter.h"
+#include "include/ArabicToRoman.h"
 
 int convert_numeral(char numeral)
 {

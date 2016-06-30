@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "../src/RomanToArabicConverter.h"
+#include "../src/include/RomanToArabicConverter.h"
 
 
 START_TEST (convert_single_numerals)

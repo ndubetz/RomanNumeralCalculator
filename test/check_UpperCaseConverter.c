@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "../src/UpperCaseConverter.h"
+#include "../src/include/UpperCaseConverter.h"
 
 void test_conversion(char * input, char * actual)
 {

@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "App.h"
-#include "UpperCaseConverter.h"
-#include "RomanNumeralValidator.h"
-#include "RomanNumeralCalculator.h"
+#include "include/App.h"
+#include "include/UpperCaseConverter.h"
+#include "include/RomanNumeralValidator.h"
+#include "include/RomanNumeralCalculator.h"
 
 char * App_run(int argc, char ** argv)
 {
@@ -20,14 +20,14 @@ char * App_run(int argc, char ** argv)
 	{
 		sprintf(buffer, "USAGE: %s ROMAN_NUMERAL [+|-] ROMAN_NUMERAL\n", program_name);
 	}
-	else if(!(operator == '+' || operator == '-'))
-	{
-		strcpy(buffer, "Invalid Operator.\n");
-	}
 	else if(!(RomanNumeralValidator_is_valid(numeral1)
 			&& RomanNumeralValidator_is_valid(numeral2)))
 	{
 		strcpy(buffer, "Invalid Roman Numeral.\n");
+	}
+	else if(!(operator == '+' || operator == '-'))
+	{
+		strcpy(buffer, "Invalid Operator.\n");
 	}
 	else
 	{

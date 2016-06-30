@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "../src/RomanNumeralCalculator.h"
+#include "../src/include/RomanNumeralCalculator.h"
 
 void test_evaluation(char * numeral1, char * numeral2, char * expectedResult, char op)
 {

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "../src/App.h"
+#include "../src/include/App.h"
 
 START_TEST (improper_arg_count_returns_usage)
 {

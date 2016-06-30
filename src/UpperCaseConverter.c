@@ -2,7 +2,7 @@
 #include <string.h>
 #include <ctype.h>
 
-#include "UpperCaseConverter.h"
+#include "include/UpperCaseConverter.h"
 
 char * UpperCaseConverter_convert(char * numeral)
 {

@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ArabicToRomanConverter.h"
-#include "ArabicToRoman.h"
+#include "include/ArabicToRomanConverter.h"
+#include "include/ArabicToRoman.h"
 
 char * ArabicToRomanConverter_convert(int arabic_number)
 {

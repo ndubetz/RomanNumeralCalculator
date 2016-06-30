@@ -2,7 +2,7 @@
 #include <string.h>
 #include <check.h>
 
-#include "../src/ArabicToRomanConverter.h"
+#include "../src/include/ArabicToRomanConverter.h"
 
 void test_arabic_to_roman(int arabic, char * roman)
 {

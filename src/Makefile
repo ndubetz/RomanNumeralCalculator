@@ -14,5 +14,3 @@ clean:
 roman_calculator: $(OBJECTS)
 	$(CC) $(CFLAGS) -o ../$@ $^ $(LIBS)
 
-App.c: App.h
-

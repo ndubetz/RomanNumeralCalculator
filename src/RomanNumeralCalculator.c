@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "RomanNumeralCalculator.h"
-#include "ArabicToRomanConverter.h"
-#include "RomanToArabicConverter.h"
-#include "RomanNumeralValidator.h"
+#include "include/RomanNumeralCalculator.h"
+#include "include/ArabicToRomanConverter.h"
+#include "include/RomanToArabicConverter.h"
+#include "include/RomanNumeralValidator.h"
 
 char * convert_result(int result)
 {

@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <check.h>
 
-#include "../src/RomanNumeralValidator.h"
+#include "../src/include/RomanNumeralValidator.h"
 
 START_TEST (can_convert_to_roman_numeral)
 {
