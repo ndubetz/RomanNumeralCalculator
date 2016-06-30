@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "ArabicToRomanConverter.h"
 #include "RomanToArabicConverter.h"
