@@ -4,6 +4,7 @@
 #include "check_RomanToArabicConverter.h"
 #include "check_RomanNumeralCalculator.h"
 #include "check_RomanNumeralValidator.h"
+#include "check_UpperCaseConverter.h"
 #include "check_App.h"
 
 Suite * RomanNumeralSuite(void)
@@ -15,6 +16,7 @@ Suite * RomanNumeralSuite(void)
  	suite_add_tcase(s, ArabicToRomanConverterTests());
  	suite_add_tcase(s, RomanNumeralCalculatorTests());
 	suite_add_tcase(s, RomanNumeralValidatorTests());
+	suite_add_tcase(s, UpperCaseConverterTests());
 	return s;
 }
 

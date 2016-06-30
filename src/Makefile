@@ -1,5 +1,5 @@
 
-OBJECTS = ArabicToRoman.o RomanToArabicConverter.o ArabicToRomanConverter.o RomanNumeralValidator.o RomanNumeralCalculator.o App.o main.o
+OBJECTS = ArabicToRoman.o RomanToArabicConverter.o ArabicToRomanConverter.o RomanNumeralValidator.o RomanNumeralCalculator.o UpperCaseConverter.o App.o main.o
 
 CFLAGS = -g
 
