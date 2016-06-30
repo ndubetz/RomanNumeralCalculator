@@ -31,14 +31,6 @@ char * RomanNumeralCalculator_evaluate(char * numeral1, char * numeral2, char op
     char * copy_numeral1 = get_upper_case_copy(numeral1);
     char * copy_numeral2 = get_upper_case_copy(numeral2);
     
-    if(!RomanNumeralValidator_is_valid(copy_numeral1)
-    	|| !RomanNumeralValidator_is_valid(copy_numeral2))
-    {
-    	free(copy_numeral1);
-		free(copy_numeral2);
-		return "Invalid Roman Numeral.";    	
-    }
-    
     int number1 = RomanToArabicConverter_convert(copy_numeral1);
     int number2 = RomanToArabicConverter_convert(copy_numeral2);    
     
