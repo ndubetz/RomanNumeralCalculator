@@ -12,7 +12,6 @@ char * App_run(int argc, char ** argv)
 	char   operator     = argv[2][0];
 	
 	char * buffer = calloc(60, sizeof(char));
-	char * result;
 	
 	if(argc != 4)
 	{
@@ -32,8 +31,8 @@ char * App_run(int argc, char ** argv)
 	}
 	else
 	{
-		result = RomanNumeralCalculator_evaluate(numeral1, numeral2, operator);
-		sprintf(buffer, "RESULT: %s\n", result);
+		sprintf(buffer, "RESULT: %s\n", 
+			RomanNumeralCalculator_evaluate(numeral1, numeral2, operator));
 		return buffer;	
 	}
 }
